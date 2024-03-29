@@ -6,24 +6,21 @@ import { PageTransactions } from "./page-transactions";
 export default function Home() {
   return (
     <main>
-      <div className="after:from-dark-900 after:to-dark-900/20 fixed left-0 top-0 -z-10 h-full w-full after:block after:h-full after:w-full after:bg-gradient-to-t">
+      <div className="fixed left-0 top-0 -z-10 h-full w-full after:block after:h-full after:w-full after:bg-gradient-to-t after:from-dark-900 after:to-dark-900/20">
         <Image
           src="/images/travel.jpg"
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: "100%", height: "100%" }}
-          layout="fill"
-          objectFit="cover"
           alt="Background image"
-          className="-z-10"
+          className="absolute -z-10 h-full w-full object-cover"
         />
       </div>
       <div>
         <PageInfo />
         <PageTransactions />
       </div>
-      <div className="from-dark-900 fixed bottom-0 w-full bg-gradient-to-t from-50% px-5 pb-8 pt-20">
+      <div className="fixed bottom-0 w-full bg-gradient-to-t from-dark-900 from-50% px-5 pb-8 pt-20">
         <PageButtons />
       </div>
     </main>
