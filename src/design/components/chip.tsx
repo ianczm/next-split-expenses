@@ -1,4 +1,4 @@
-import { cn } from "@/utils/tailwind";
+import { cn } from "@/lib/utils";
 import { HTMLAttributes, ReactNode } from "react";
 
 interface ChipProps extends HTMLAttributes<HTMLDivElement> {
@@ -9,7 +9,7 @@ export const Chip = ({ children, className, ...props }: ChipProps) => {
   return (
     <div
       className={cn(
-        "bg-light-100 text-dark-900 block rounded-full px-4 py-3 text-xs",
+        "block rounded-full bg-light-100 px-4 py-3 text-xs text-dark-900",
         className,
       )}
       {...props}

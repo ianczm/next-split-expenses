@@ -1,4 +1,4 @@
-import { cn } from "@/utils/tailwind";
+import { cn } from "@/lib/utils";
 import { HTMLAttributes, ReactNode } from "react";
 
 interface Heading1Props extends HTMLAttributes<HTMLHeadingElement> {
