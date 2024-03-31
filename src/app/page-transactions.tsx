@@ -1,18 +1,53 @@
 import { Card } from "@/design/components/card";
 import { Heading2, Heading3, Paragraph } from "@/design/typography/typgoraphy";
+import { cn } from "@/lib/utils";
+import { Transaction as ITransaction, User } from "@/models";
+import { ava, resortBooking } from "@/models/mocks";
 
-const Transaction = () => {
+const Transaction = ({
+  transaction,
+  currentUser,
+}: {
+  transaction: ITransaction;
+  currentUser: User;
+}) => {
+  const { title, payee, amount, splits } = transaction;
+
   return (
-    <Card className="flex-row justify-between">
+    <Card className="cursor-pointer flex-row justify-between">
       <div className="flex flex-col">
-        <Paragraph className="font-bold">Resort Booking</Paragraph>
+        <Paragraph className="font-bold">{title}</Paragraph>
         <Paragraph className="text-glass-secondary">
-          You paid RM 5,419.00
+          {currentUser.id === payee.id ? "You" : payee.name} paid {amount}
         </Paragraph>
       </div>
-      <div className="flex flex-col text-right text-danger">
-        <Paragraph>You lent</Paragraph>
-        <Paragraph className="font-bold">RM 3,296.00</Paragraph>
+      <div
+        className={cn("flex flex-col text-right text-success", {
+          "text-danger": payee.id === currentUser.id,
+        })}
+      >
+        {payee.id === currentUser.id ? (
+          <>
+            <Paragraph>You lent</Paragraph>
+            <Paragraph className="font-bold">
+              {amount -
+                splits.reduce(
+                  (prev, current) =>
+                    current.payee.id === currentUser.id ? 0 : current.amount,
+                  0,
+                )}
+            </Paragraph>
+          </>
+        ) : (
+          <>
+            <Paragraph>You borrowed</Paragraph>
+            <Paragraph className="font-bold">
+              {amount -
+                splits.find((split) => split.payee.id === currentUser.id)
+                  ?.amount!}
+            </Paragraph>
+          </>
+        )}
       </div>
     </Card>
   );
@@ -25,22 +60,22 @@ export const PageTransactions = () => {
       <div className="flex flex-col gap-4">
         <Heading3>March 1, 2024</Heading3>
         <div className="flex flex-col gap-2">
-          <Transaction />
-          <Transaction />
-          <Transaction />
+          <Transaction transaction={resortBooking} currentUser={ava} />
+          <Transaction transaction={resortBooking} currentUser={ava} />
+          <Transaction transaction={resortBooking} currentUser={ava} />
         </div>
       </div>
       <div className="flex flex-col gap-4">
         <Heading3>March 3, 2024</Heading3>
         <div className="flex flex-col gap-2">
-          <Transaction />
+          <Transaction transaction={resortBooking} currentUser={ava} />
         </div>
       </div>
       <div className="flex flex-col gap-4">
         <Heading3>March 7, 2024</Heading3>
         <div className="flex flex-col gap-2">
-          <Transaction />
-          <Transaction />
+          <Transaction transaction={resortBooking} currentUser={ava} />
+          <Transaction transaction={resortBooking} currentUser={ava} />
         </div>
       </div>
     </div>

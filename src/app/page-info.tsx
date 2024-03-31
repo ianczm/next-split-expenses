@@ -7,26 +7,23 @@ import {
   Paragraph,
   TextUI,
 } from "@/design/typography/typgoraphy";
+import { Group } from "@/models";
 
-const participants = ["Ava", "Brandon", "Charlotte", "Dylan"];
+export const PageInfo = ({ group }: { group: Group }) => {
+  const { date, title, users } = group;
 
-export const PageInfo = () => {
   return (
     <div className="container flex flex-col gap-5 p-5 pt-40">
-      <Heading3>March 10, 2024</Heading3>
-      <Heading1>
-        Redang,
-        <br />
-        Malaysia
-      </Heading1>
+      <Heading3>{date.format("LL")}</Heading3>
+      <Heading1>{title}</Heading1>
       <div className={"flex gap-1"}>
-        {participants.map((name) => (
-          <Chip key={name.toLowerCase()}>
-            <TextUI>{name}</TextUI>
+        {users.map((user) => (
+          <Chip key={user.id} className="cursor-pointer">
+            <TextUI>{user.name}</TextUI>
           </Chip>
         ))}
       </div>
-      <Card>
+      <Card className="cursor-pointer">
         <div className="flex flex-col">
           <Paragraph>
             You owe <b>Charlotte</b>{" "}
