@@ -1,14 +1,15 @@
 import { Paragraph } from "@/design/typography/typgoraphy";
+import { Button } from "@/shadcn/ui/button";
 
 export const PageButtons = () => {
   return (
-    <div className="flex flex-row gap-2">
-      <button className="border-accent-400 text-accent-400 w-full rounded-full border px-5 py-4">
+    <div className="container flex flex-row gap-2 px-5">
+      <Button variant={"secondary"} size={"lgRounded"} className={"w-full"}>
         <Paragraph className="font-bold">Back</Paragraph>
-      </button>
-      <button className="bg-accent-400 w-full rounded-full px-5 py-4">
+      </Button>
+      <Button variant={"default"} size={"lgRounded"} className={"w-full"}>
         <Paragraph className="font-bold">Add Transaction</Paragraph>
-      </button>
+      </Button>
     </div>
   );
 };

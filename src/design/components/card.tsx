@@ -1,4 +1,4 @@
-import { cn } from "@/utils/tailwind";
+import { cn } from "@/lib/utils";
 import { HTMLAttributes, ReactNode } from "react";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -9,7 +9,7 @@ export const Card = ({ children, className, ...props }: CardProps) => {
   return (
     <div
       className={cn(
-        "bg-glass-primary/30 shadow-dark-900 border-glass-border/5 flex flex-col gap-4 rounded-xl border p-5 drop-shadow-xl backdrop-blur-2xl",
+        "flex flex-col gap-4 rounded-xl border border-glass-border/5 bg-glass-primary/30 p-5 shadow-dark-900 drop-shadow-xl backdrop-blur-2xl",
         className,
       )}
       {...props}

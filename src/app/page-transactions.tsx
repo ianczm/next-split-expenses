@@ -10,7 +10,7 @@ const Transaction = () => {
           You paid RM 5,419.00
         </Paragraph>
       </div>
-      <div className="text-danger flex flex-col text-right">
+      <div className="flex flex-col text-right text-danger">
         <Paragraph>You lent</Paragraph>
         <Paragraph className="font-bold">RM 3,296.00</Paragraph>
       </div>
@@ -20,7 +20,7 @@ const Transaction = () => {
 
 export const PageTransactions = () => {
   return (
-    <div className="flex flex-col gap-5 p-5 pb-40">
+    <div className="container flex flex-col gap-5 p-5 pb-40">
       <Heading2>Transactions</Heading2>
       <div className="flex flex-col gap-4">
         <Heading3>March 1, 2024</Heading3>

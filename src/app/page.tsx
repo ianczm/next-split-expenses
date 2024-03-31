@@ -20,7 +20,7 @@ export default function Home() {
         <PageInfo />
         <PageTransactions />
       </div>
-      <div className="fixed bottom-0 w-full bg-gradient-to-t from-dark-900 from-50% px-5 pb-8 pt-20">
+      <div className="fixed bottom-0 w-full bg-gradient-to-t from-dark-900 from-40% pb-8 pt-20">
         <PageButtons />
       </div>
     </main>

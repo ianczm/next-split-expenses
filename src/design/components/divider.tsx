@@ -1,4 +1,4 @@
-import { cn } from "@/utils/tailwind";
+import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 
 interface DividerProps extends HTMLAttributes<HTMLDivElement> {}
