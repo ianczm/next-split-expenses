@@ -15,7 +15,7 @@ export const PageInfo = ({ group }: { group: Group }) => {
   return (
     <div className="container flex flex-col gap-5 p-5 pt-40">
       <Heading3>{date.format("LL")}</Heading3>
-      <Heading1>{title}</Heading1>
+      <Heading1 className="whitespace-pre-wrap">{title}</Heading1>
       <div className={"flex gap-1"}>
         {users.map((user) => (
           <Chip key={user.id} className="cursor-pointer">
@@ -25,6 +25,7 @@ export const PageInfo = ({ group }: { group: Group }) => {
       </div>
       <Card className="cursor-pointer">
         <div className="flex flex-col">
+          {/* Todo: Allow multiple people to owe/receive from */}
           <Paragraph>
             You owe <b>Charlotte</b>{" "}
             <strong className={"font-bold text-danger"}>RM 145.15</strong>

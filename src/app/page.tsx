@@ -1,4 +1,4 @@
-import { group } from "@/models/mocks";
+import { ava, group } from "@/models/mocks";
 import Image from "next/image";
 import { PageButtons } from "./page-buttons";
 import { PageInfo } from "./page-info";
@@ -19,7 +19,7 @@ export default function Home() {
       </div>
       <div>
         <PageInfo group={group} />
-        <PageTransactions />
+        <PageTransactions transactions={group.transactions} currentUser={ava} />
       </div>
       <div className="fixed bottom-0 w-full bg-gradient-to-t from-dark-900 from-40% pb-8 pt-20">
         <PageButtons />
