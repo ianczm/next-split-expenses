@@ -101,11 +101,31 @@ export const ramen: Transaction = {
   ],
 };
 
+export const salad: Transaction = {
+  id: "salad-transactionId",
+  title: "Salad Boi",
+  payee: charlotte,
+  amount: 62.65,
+  date: moment({ year: 2024, month: 5, day: 16 }),
+  splits: [
+    {
+      id: "ramen-splitId1",
+      amount: 31.32,
+      payee: charlotte,
+    },
+    {
+      id: "ramen-splitId2",
+      amount: 31.33,
+      payee: ava,
+    },
+  ],
+};
+
 export const group: Group = {
   id: "groupId",
   title: "Redang,\nMalaysia",
   date: moment({ year: 2024, month: 3, day: 10 }),
   users: [ava, brandon, charlotte, dylan],
-  transactions: [resortBooking, shuttlecocks, ramen, ramen],
+  transactions: [resortBooking, shuttlecocks, ramen, salad],
   passcode: "1234",
 };

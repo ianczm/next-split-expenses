@@ -1,3 +1,6 @@
+"use client";
+
+import { useUserSession } from "@/frontend/store/user-session";
 import { ava, group } from "@/models/mocks";
 import Image from "next/image";
 import { PageButtons } from "./page-buttons";
@@ -5,6 +8,8 @@ import { PageInfo } from "./page-info";
 import { PageTransactions } from "./page-transactions";
 
 export default function Home() {
+  const setCurrentUser = useUserSession((session) => session.setCurrentUser);
+  setCurrentUser(ava);
   return (
     <main>
       <div className="fixed left-0 top-0 -z-10 h-full w-full after:block after:h-full after:w-full after:bg-gradient-to-t after:from-dark-900 after:to-dark-900/20">
@@ -19,7 +24,7 @@ export default function Home() {
       </div>
       <div>
         <PageInfo group={group} />
-        <PageTransactions transactions={group.transactions} currentUser={ava} />
+        <PageTransactions transactions={group.transactions} />
       </div>
       <div className="fixed bottom-0 w-full bg-gradient-to-t from-dark-900 from-40% pb-8 pt-20">
         <PageButtons />
