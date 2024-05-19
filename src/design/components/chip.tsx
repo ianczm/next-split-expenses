@@ -9,7 +9,7 @@ export const Chip = ({ children, className, ...props }: ChipProps) => {
   return (
     <div
       className={cn(
-        "block rounded-full bg-light-100 px-4 py-3 text-xs text-dark-900",
+        "block whitespace-nowrap rounded-full bg-light-100 px-4 py-3 text-xs text-dark-900",
         className,
       )}
       {...props}

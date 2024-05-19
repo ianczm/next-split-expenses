@@ -5,16 +5,24 @@ import _ from "lodash";
 import { Paragraph } from "../typography/typgoraphy";
 import { Card } from "./card";
 
-function computeBorrowed(splits: Split[], currentUser: User) {
-  return _(splits)
-    .filter((split) => split.payee.id === currentUser.id)
-    .sumBy((split) => split.amount);
+function computeBorrowed(payee: User, splits: Split[], currentUser: User) {
+  if (payee.id === currentUser.id) {
+    return 0;
+  } else {
+    return _(splits)
+      .filter((split) => split.payee.id === currentUser.id)
+      .sumBy((split) => split.amount);
+  }
 }
 
-function computeLent(splits: Split[], currentUser: User) {
-  return _(splits)
-    .filter((split) => split.payee.id !== currentUser.id)
-    .sumBy((split) => split.amount);
+function computeLent(payee: User, splits: Split[], currentUser: User) {
+  if (payee.id !== currentUser.id) {
+    return 0;
+  } else {
+    return _(splits)
+      .filter((split) => split.payee.id !== currentUser.id)
+      .sumBy((split) => split.amount);
+  }
 }
 
 export const Transaction = ({
@@ -26,8 +34,8 @@ export const Transaction = ({
 }) => {
   const { title, payee, amount, splits } = transaction;
 
-  const borrowed = computeBorrowed(splits, currentUser);
-  const lent = computeLent(splits, currentUser);
+  const borrowed = computeBorrowed(payee, splits, currentUser);
+  const lent = computeLent(payee, splits, currentUser);
 
   return (
     <Card className="cursor-pointer flex-row justify-between">
@@ -39,24 +47,29 @@ export const Transaction = ({
         </Paragraph>
       </div>
       <div
-        className={cn("flex flex-col text-right text-danger", {
-          "text-success": payee.id === currentUser.id,
-          "text-glass-secondary": borrowed === 0,
+        className={cn("flex flex-col text-right text-glass-secondary", {
+          "text-success": lent > 0,
+          "text-danger": borrowed > 0,
         })}
       >
-        {payee.id === currentUser.id ? (
+        {lent > 0 ? (
           <>
             <Paragraph>You lent</Paragraph>
             <Paragraph className="font-bold">
               {toCurrencyString(lent)}
             </Paragraph>
           </>
-        ) : (
+        ) : borrowed > 0 ? (
           <>
             <Paragraph>You borrowed</Paragraph>
             <Paragraph className="font-bold">
               {toCurrencyString(borrowed)}
             </Paragraph>
+          </>
+        ) : (
+          <>
+            <Paragraph>You were not involved</Paragraph>
+            <Paragraph className="font-bold">0.00</Paragraph>
           </>
         )}
       </div>

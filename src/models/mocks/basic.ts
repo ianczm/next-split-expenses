@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Group, Transaction, User } from ".";
+import { Group, SimplifiedAccounts, Transaction, User } from "..";
 
 export const ava: User = {
   id: "avaId",
@@ -128,4 +128,26 @@ export const group: Group = {
   users: [ava, brandon, charlotte, dylan],
   transactions: [resortBooking, shuttlecocks, ramen, salad],
   passcode: "1234",
+};
+
+export const mockAccounts: SimplifiedAccounts = {
+  receivables: [
+    {
+      to: ava,
+      from: charlotte,
+      amount: 10,
+    },
+    {
+      to: ava,
+      from: brandon,
+      amount: 10,
+    },
+  ],
+  payables: [
+    {
+      to: dylan,
+      from: ava,
+      amount: 5,
+    },
+  ],
 };
